@@ -1,22 +1,31 @@
-# AAEON NXP Manifest README
-- This repo is dedicated to the NXP IMX-based modules. Here you can find the Yocto BSP recipes for AAEON.
-- You can follow the same steps to build your own customized BSP based on your interests.
-- For example, for i.MX Linux BSP releases based on Yocto Project `Scarthgap`, the branch is `scarthgap`
-## Install the `repo` utility:
-- To use this manifest repo, the `repo` tool must be installed first.
+# AAEON Manifest README (scarthgap)
+
+## Example
+- To download the 6.6.23 release
 ```bash
-mkdir ~/bin
-curl http://commondatastorage.googleapis.com/git-repo-downloads/repo  > ~/bin/repo
-chmod a+x ~/bin/repo
-PATH=${PATH}:~/bin
+repo init -u https://github.com/justbuyyal/meta-aaeon-nxp.git -b scarthgap -m aaeon-scarthgap-v01.xml
 ```
-## Install essential host packages
-- Your Build Host must install required packages for the Yocto build. Reference to the section "Build Host Packages" in the document "Yocto Project Quick build".
-    - [Build-Host-Packages](https://docs.yoctoproject.org/5.0.3/brief-yoctoprojectqs/index.html#build-host-packages)
-## Download the Yocto Project BSP
+## Setup the build folder for a BSP release:
+```
+[MACHINE=<machine>] [DISTRO=fsl-imx-<backend>] source ./aaeon-setup-release.sh -b bld-<backend>
+<machine>   defaults to `ucom-imx93-v1`
+<backend>   Graphics backend type
+    xwayland    Wayland with X11 support - default distro
+    wayland     Wayland
+    fb          Framebuffer (not supported for mx8)
+```
+Examples:
+- Setup for Xwayland
+```bash
+MACHINE=ucom-imx93-v1 DISTRO=fsl-imx-xwayland source ./aaeon-setup-release.sh -b bld-xwayland
+```
+## Build an image:
 ```plaintext
-mkdir <release> && cd <release>
-repo init -u https://github.com/justbuyyal/meta-aaeon-nxp.git -b <branch name> [ -m <release manifest>]
-repo sync
+bitbake <image recipe>
 ```
-- Each branch has detailed READMEs describing exact syntax.
+Some image recipe:
+| Image Name | Description |
+| -------- | -------- |
+| imx-image-core | core image with basic graphics and no multimedia |
+| imx-image-multimedia | image with multimedia and graphics |
+| imx-image-full | image with multimedia and machine learning and Qt |
