@@ -16,7 +16,7 @@ PATH=${PATH}:~/bin
 ## Download the Yocto Project BSP
 ```plaintext
 mkdir <release> && cd <release>
-repo init -u https://github.com/justbuyyal/meta-aaeon-nxp.git -b <branch name> [ -m <release manifest>]
+repo init -u https://github.com/jasonfsyang/aaeon-manifest.git -b <branch name> [ -m <release manifest>]
 repo sync
 ```
 - Each branch has detailed READMEs describing exact syntax.
