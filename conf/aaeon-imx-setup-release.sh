@@ -141,10 +141,6 @@ if [ ! -e $BUILD_DIR/conf/local.conf.org ]; then
 else
     cp $BUILD_DIR/conf/local.conf.org $BUILD_DIR/conf/local.conf
 fi
-# h.264 software decoder
-echo "LICENSE_FLAGS_ACCEPTED += \"commercial\"" >> $BUILD_DIR/conf/local.conf
-echo "IMAGE_INSTALL:append = \"gstreamer1.0-libav\"" >> $BUILD_DIR/conf/local.conf
-echo "PACKAGECONFIG:append_pn-gstreamer1.0-libav = \"x264\"" >> $BUILD_DIR/conf/local.conf
 
 echo >> conf/local.conf
 echo "# Switch to Debian packaging and include package-management in the image" >> conf/local.conf
@@ -157,6 +153,10 @@ else
     cp $BUILD_DIR/conf/bblayers.conf.org $BUILD_DIR/conf/bblayers.conf
 fi
 
+# Build threads
+echo "DL_TIMEOUT = \"600\"" >> $BUILD_DIR/conf/local.conf
+echo "BB_NUMBER_THREADS = \"4\"" >> $BUILD_DIR/conf/local.conf
+echo "PARALLEL_MAKE = \"-j 4\"" >> $BUILD_DIR/conf/local.conf
 
 META_FSL_BSP_RELEASE="${CWD}/sources/meta-imx/meta-imx-bsp"
 
@@ -198,10 +198,6 @@ fi
 cd  $BUILD_DIR
 
 # Add to local.conf
-# Build threads
-echo "DL_TIMEOUT = \"600\"" >> $BUILD_DIR/conf/local.conf
-echo "BB_NUMBER_THREADS = \"4\"" >> $BUILD_DIR/conf/local.conf
-echo "PARALLEL_MAKE = \"-j 4\"" >> $BUILD_DIR/conf/local.conf
 # Install packages
 echo "IMAGE_INSTALL:append = \"ntp nfs-utils net-tools dosfstools dos2unix \"" >> $BUILD_DIR/conf/local.conf
 echo "IMAGE_INSTALL:append = \"i2c-tools usbutils iperf3 mtd-utils can-utils \"" >> $BUILD_DIR/conf/local.conf
