@@ -94,7 +94,7 @@ fi
 
 if [ -z "$MACHINE" ]; then
     echo setting to default machine
-    MACHINE='ucom-imx93-v1'
+    MACHINE='imx6qpsabresd'
 fi
 
 case $MACHINE in
@@ -142,7 +142,16 @@ else
     cp $BUILD_DIR/conf/local.conf.org $BUILD_DIR/conf/local.conf
 fi
 
+# Build threads
+echo "DL_TIMEOUT = \"600\"" >> $BUILD_DIR/conf/local.conf
+echo "BB_NUMBER_THREADS = \"4\"" >> $BUILD_DIR/conf/local.conf
+echo "PARALLEL_MAKE = \"-j 4\"" >> $BUILD_DIR/conf/local.conf
+
 echo >> conf/local.conf
+# h.264 software decoder
+echo "LICENSE_FLAGS_ACCEPTED += \"commercial\"" >> $BUILD_DIR/conf/local.conf
+echo "IMAGE_INSTALL:append = \"gstreamer1.0-libav \"" >> $BUILD_DIR/conf/local.conf
+echo "PACKAGECONFIG:append_pn-gstreamer1.0-libav = \"x264\"" >> $BUILD_DIR/conf/local.conf
 echo "# Switch to Debian packaging and include package-management in the image" >> conf/local.conf
 echo "PACKAGE_CLASSES = \"package_deb\"" >> conf/local.conf
 echo "EXTRA_IMAGE_FEATURES += \"package-management\"" >> conf/local.conf
@@ -153,10 +162,6 @@ else
     cp $BUILD_DIR/conf/bblayers.conf.org $BUILD_DIR/conf/bblayers.conf
 fi
 
-# Build threads
-echo "DL_TIMEOUT = \"600\"" >> $BUILD_DIR/conf/local.conf
-echo "BB_NUMBER_THREADS = \"4\"" >> $BUILD_DIR/conf/local.conf
-echo "PARALLEL_MAKE = \"-j 4\"" >> $BUILD_DIR/conf/local.conf
 
 META_FSL_BSP_RELEASE="${CWD}/sources/meta-imx/meta-imx-bsp"
 
@@ -182,7 +187,7 @@ echo "BBLAYERS += \"\${BSPDIR}/sources/meta-qt6\"" >> $BUILD_DIR/conf/bblayers.c
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-security/meta-parsec\"" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-security/meta-tpm\"" >> $BUILD_DIR/conf/bblayers.conf
 echo "BBLAYERS += \"\${BSPDIR}/sources/meta-virtualization\"" >> $BUILD_DIR/conf/bblayers.conf
-echo "BBLAYERS += \"\${BSPDIR}/sources/meta-nxpimx93\"" >> $BUILD_DIR/conf/bblayers.conf
+echo "BBLAYERS += \"\${BSPDIR}/sources/meta-aaeon-nxp\"" >> $BUILD_DIR/conf/bblayers.conf
 
 echo BSPDIR=$BSPDIR
 echo BUILD_DIR=$BUILD_DIR
@@ -197,7 +202,6 @@ fi
 
 cd  $BUILD_DIR
 
-# Add to local.conf
 # Install packages
 echo "IMAGE_INSTALL:append = \"ntp nfs-utils net-tools dosfstools dos2unix \"" >> $BUILD_DIR/conf/local.conf
 echo "IMAGE_INSTALL:append = \"i2c-tools usbutils iperf3 mtd-utils can-utils \"" >> $BUILD_DIR/conf/local.conf
