@@ -1,7 +1,7 @@
 # AAEON NXP Manifest README
 - This repo is dedicated to the NXP IMX-based modules. Here you can find the Yocto BSP recipes for AAEON.
 - You can follow the same steps to build your own customized BSP based on your interests.
-- For example, for i.MX Linux BSP releases based on Yocto Project `Scarthgap`, the branch is `scarthgap`
+- For example, for i.MX Linux BSP releases based on Yocto Project `Kirkstone`, the branch is `kirkstone`
 ## Install the `repo` utility:
 - To use this manifest repo, the `repo` tool must be installed first.
 ```bash
@@ -16,7 +16,27 @@ PATH=${PATH}:~/bin
 ## Download the Yocto Project BSP
 ```plaintext
 mkdir <release> && cd <release>
-repo init -u https://github.com/jasonfsyang/aaeon-manifest.git -b <branch name> [ -m <release manifest>]
+repo init -u https://github.com/BSP-Dev/aaeon-manifest.git -b <branch name> [ -m <release manifest>]
 repo sync
 ```
 - Each branch has detailed READMEs describing exact syntax.
+
+- Please see the corresponding sections below for details.
+
+### Build SRG-IMX8P BSP
+- (1)	Download Yocto BSP with kernel 5.15.71
+    ```bash!
+    $ mkdir imx-yocto-bsp
+    $ cd imx-yocto-bsp
+    $ repo init -u https://github.com/aaeonaeu/aaeon-nxpimx8-manifest -b main  -m aaeon-kirkstone-v01.xml
+    $ repo sync
+    ```
+- (2)	Environment setup
+    ```bash!
+    $ DISTRO=fsl-imx-wayland MACHINE=imx8mpevk source aaeon-imx-setup-release.sh -b imx8p_build
+    ```
+- (3)	Build NXP IMX BSP
+    ```bash!
+    $ bitbake imx-image-full
+    ```
+    - Note: (1)	If FetchError,then change git branch=master => branch=main
