@@ -29,7 +29,7 @@ repo sync
 | Machine  | DDR  |
 | -------- | ---- |
 | SRG-IMX8P| 2G/4G|
-<!--|SRG-IMX8PL| 2G/4G|-->
+|SRG-IMX8PL| 2G/4G|
 
 ### Build SRG-IMX8P BSP
 - (1)	Download Yocto BSP with kernel 5.15.71
@@ -43,11 +43,11 @@ repo sync
     ```bash!
     # SRG-IMX8P (4G DDR)
     $ DISTRO=fsl-imx-wayland MACHINE=srg-imx8p-4g source aaeon-imx-setup-release.sh -b imx8p_build
-    ```
-<!--
+    
     # SRG-IMX8PL (4G DDR)
     $ DISTRO=fsl-imx-wayland MACHINE=srg-imx8pl-4g source aaeon-imx-setup-release.sh -b imx8pl_build
--->
+    ```
+    
 - (3)	Build NXP IMX BSP
     ```bash!
     $ bitbake imx-image-full
