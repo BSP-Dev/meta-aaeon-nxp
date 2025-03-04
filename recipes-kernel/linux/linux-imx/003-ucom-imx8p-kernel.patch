@@ -930,7 +930,7 @@ index 695d76afdfaf..2e9701a78c06 100644
 +	fsl,uart-has-rtscts;
  	status = "okay";
 -
--	bluetooth { 
+-	bluetooth {
 -		compatible = "nxp,88w8997-bt";
 -	};
  };
