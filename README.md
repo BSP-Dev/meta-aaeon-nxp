@@ -28,7 +28,7 @@ repo sync
 
 | Machine  | DDR  |
 | -------- | ---- |
-|uCOM-IMX8P|  4G  |
+|uCOM-IMX8P| 2G/4G|
 |uCOM-IMX93|      |
 
 ### Build uCOM-IMX8P BSP
@@ -41,7 +41,10 @@ repo sync
     ```
 - (2)	Environment setup
     ```bash!
-    # uCOM-IMX8P (4G DDR)
+    # uCOM-IMX8P (2G DDR)
+    $ DISTRO=fsl-imx-wayland MACHINE=ucom-imx8p-2g source aaeon-6636-imx-setup-release.sh -b imx8p_build
+	
+	# uCOM-IMX8P (4G DDR)
     $ DISTRO=fsl-imx-wayland MACHINE=ucom-imx8p-4g source aaeon-6636-imx-setup-release.sh -b imx8p_build
     
     ```

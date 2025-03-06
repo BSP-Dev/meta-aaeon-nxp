@@ -198,7 +198,7 @@ echo "IMAGE_INSTALL:append = \"libgpiod libgpiod-dev libgpiod-tools dhcpcd wpa-s
 echo "IMAGE_INSTALL:append = \"mesa libgl-mesa-dev gstreamer1.0-plugins-bad qtconnectivity qtimageformats \"" >> $BUILD_DIR/conf/local.conf
 echo "IMAGE_INSTALL:append = \"qtmultimedia qtopcua qtsensors qtserialbus qtserialport qtwebsockets qttools \"" >> $BUILD_DIR/conf/local.conf
 echo "IMAGE_INSTALL:append = \"ttf-bitstream-vera tree openldap openvpn qpdf tcpdump htop rfkill freetype cifs-utils \"" >> $BUILD_DIR/conf/local.conf
-echo "IMAGE_INSTALL:append = \"v4l-utils mtools lmsensors modemmanager minicom python3-speedtest-cli read-edid edid-decode\"" >> $BUILD_DIR/conf/local.conf
+echo "IMAGE_INSTALL:append = \"v4l-utils mtools lmsensors modemmanager minicom python3-speedtest-cli read-edid edid-decode aaeon-tools\"" >> $BUILD_DIR/conf/local.conf
 echo "PACKAGE_EXCLUDE:append = \" connman connman-client connman-tests connman-tools\"" >> $BUILD_DIR/conf/local.conf
 echo "PACKAGE_EXCLUDE:append = \" packagegroup-core-tools-testapps\"" >> $BUILD_DIR/conf/local.conf
 clean_up
