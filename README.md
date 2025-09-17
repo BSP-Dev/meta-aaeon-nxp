@@ -26,10 +26,40 @@ repo sync
 
 ### Support Devices
 
-| Machine  | DDR  |
-| -------- | ---- |
-|uCOM-IMX8P| 2G/4G|
-|uCOM-IMX93|      |
+| Machine     | DDR   |
+| ----------- | ----- |
+| uCOM-IMX8P  | 2G/4G |
+| uCOM-IMX93  |       |
+| SRG-IMX8PL  | 2G/4G |
+| PICO-IMX8PL | 2G/4G |
+
+### Build SRG/PICO-IMX8PL BSP
+- (1)	Download Yocto BSP with kernel 6.6.36
+    ```bash!
+    $ mkdir imx-yocto-bsp
+    $ cd imx-yocto-bsp
+    $ repo init -u https://github.com/BSP-Dev/aaeon-manifest.git -b scarthgap -m aaeon-scarthgap-v02.xml
+    $ repo sync
+    ```
+- (2)	Environment setup
+    ```bash!
+    # SRG/PICO-IMX8PL (2G DDR)
+    $ DISTRO=fsl-imx-wayland MACHINE=srg-imx8pl-2g source aaeon-6636-imx-setup-release.sh -b imx8p_build
+	
+	# SRG/PICO-IMX8PL (4G DDR)
+    $ DISTRO=fsl-imx-wayland MACHINE=srg-imx8pl-4g source aaeon-6636-imx-setup-release.sh -b imx8p_build
+    
+    ```
+    
+- (3)	Build NXP IMX BSP
+    ```bash!
+    $ bitbake imx-image-full
+
+    # For quick test
+    $ bitbake core-image-minimal
+    ```
+- Note: (1)	If FetchError,then change git branch=master => branch=main
+
 
 ### Build uCOM-IMX8P BSP
 - (1)	Download Yocto BSP with kernel 6.6.36
@@ -61,7 +91,7 @@ repo sync
 ### Build uCOM-IMX93 BSP
 - (1)	Download Yocto BSP with kernel 6.6.23
     ```bash!
-    repo init -u https://github.com/jasonfsyang/aaeon-manifest.git -b scarthgap -m aaeon-scarthgap-v01.xml
+    repo init -u https://github.com/BSP-Dev/aaeon-manifest.git -b scarthgap -m aaeon-scarthgap-v01.xml
     ```
 - (2)	Setup the build folder for a BSP release:
     ```bash!
