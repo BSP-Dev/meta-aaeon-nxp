@@ -915,7 +915,7 @@ index 8c5306d5d20..6b3218db58e 100644
 -#endif
 -#endif
 diff --git a/configs/imx8mp_evk_defconfig b/configs/imx8mp_evk_defconfig
-index 7112fdf5859..c92026e2464 100644
+index 7112fdf5859..095b75ffc8b 100644
 --- a/configs/imx8mp_evk_defconfig
 +++ b/configs/imx8mp_evk_defconfig
 @@ -6,6 +6,7 @@ CONFIG_SPL_GPIO=y
@@ -935,6 +935,17 @@ index 7112fdf5859..c92026e2464 100644
  CONFIG_TARGET_IMX8MP_EVK=y
  CONFIG_SPL_SERIAL=y
  CONFIG_SPL_DRIVERS_MISC=y
+@@ -23,6 +24,10 @@ CONFIG_SPL=y
+ CONFIG_SPL_IMX_ROMAPI_LOADADDR=0x48000000
+ CONFIG_SYS_LOAD_ADDR=0x40400000
+ CONFIG_DISTRO_DEFAULTS=y
++CONFIG_AUTOBOOT_KEYED=y
++CONFIG_AUTOBOOT_KEYED_CTRLC=y
++CONFIG_AUTOBOOT_STOP_STR="\x03"
++CONFIG_AUTOBOOT_DELAY_STR="\x03"
+ CONFIG_SYS_MONITOR_LEN=524288
+ CONFIG_DEFAULT_DEVICE_TREE="imx8mp-evk"
+ CONFIG_BOOTCOMMAND="run sr_ir_v2_cmd;run distro_bootcmd;run bsp_bootcmd"
 diff --git a/include/configs/imx8mp_evk.h b/include/configs/imx8mp_evk.h
 index 9d34c54d66d..b2de76943aa 100644
 --- a/include/configs/imx8mp_evk.h
