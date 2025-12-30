@@ -5,10 +5,8 @@ SRC_URI = "\
 	file://srgimx8cfg \
     file://mdio-tool \
 "
-SRC_URI += "${EXTRA_UBOOT_BOOTLOADER_FILE}"
 
 S = "${WORKDIR}"
-
 
 do_install () {
     install -d ${D}/home/srt/eeprom
