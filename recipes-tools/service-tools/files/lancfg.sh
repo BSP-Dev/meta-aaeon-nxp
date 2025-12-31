@@ -47,12 +47,14 @@ function  write_LAN_mac_address()
 
 function  write_LAN_LED_setting()
 {
-
     /usr/sbin/mdio-tool w eth0 0x1f 0x0d04
-    /usr/sbin/mdio-tool w eth0 0x10 0xC048
+    /usr/sbin/mdio-tool w eth0 0x10 0x6240
+    /usr/sbin/mdio-tool w eth0 0x11 0x0000
     /usr/sbin/mdio-tool w eth0 0x1f 0x0000
+
     /usr/sbin/mdio-tool w eth1 0x1f 0x0d04
-    /usr/sbin/mdio-tool w eth1 0x10 0xC048
+    /usr/sbin/mdio-tool w eth1 0x10 0x6240
+    /usr/sbin/mdio-tool w eth1 0x11 0x0000
     /usr/sbin/mdio-tool w eth1 0x1f 0x0a42
 }
 
