@@ -1,0 +1,20 @@
+diff --git a/arch/arm/dts/imx93.dtsi b/arch/arm/dts/imx93.dtsi
+index 16d2c8c0ad4..3fdc13b81fb 100644
+--- a/arch/arm/dts/imx93.dtsi
++++ b/arch/arm/dts/imx93.dtsi
+@@ -150,13 +150,13 @@
+ 
+ 			trips {
+ 				cpu_alert: cpu-alert {
+-					temperature = <80000>;
++					temperature = <110000>;
+ 					hysteresis = <2000>;
+ 					type = "passive";
+ 				};
+ 
+ 				cpu_crit: cpu-crit {
+-					temperature = <90000>;
++					temperature = <115000>;
+ 					hysteresis = <2000>;
+ 					type = "critical";
+ 				};
